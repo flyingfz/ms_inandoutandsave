@@ -116,9 +116,52 @@
 		 * @access public
 		 * */
 		public function add_order(){
-			echo "<pre>";
-			print_r($_POST);
-			echo "</pre>";
+// 			echo "<pre>";
+// 			print_r($_POST);
+// 			echo "</pre>";
+// 			die();
+			$this->load->library("form_validation");
+			$this->load->model("main/add_sales_order_model");
+			if($this->input->post("mode") == "settle_accounts"){  //结算
+				//防空验证
+				$this->form_validation->set_rules("sales_order_number","销售单号","trim|required");
+				$this->form_validation->set_rules("sales_date","日期","trim|required");
+				$this->form_validation->set_rules("warehouse_id","出货仓库","trim|required");
+				$this->form_validation->set_rules("commodity_num","合计数量","trim|required");
+				$this->form_validation->set_rules("total_price","整单金额","trim|required");
+				if($this->form_validation->run() != false){
+					//获取销售单基本数据
+					$order_data = array(
+						"sales_order_number" => $this->input->post("sales_order_number"),  //销售单编号
+						"sales_order_date" => $this->input->post("sales_date"),  //日期
+						"input_staff_id" => "1", //录入员ID号
+						"serial_number" => $this->input->post("serial_number"),  //会员卡号
+						"warehouse_id" => $this->input->post("warehouse_id"),  //出货仓库
+						"commodity_num" => $this->input->post("commodity_num"),  //合计数量
+						"total_price" => $this->input->post("total_price")  //合计整单金额
+					);
+					//添加基本数据
+					if($sales_order_id = $this->add_sales_order_model->add_sales_order($order_data)){
+						//获取详细数据
+						$order_detailed_data = array(
+							"" =>
+						);
+					}else{
+						
+					}
+				}else{
+					
+				}
+			}else if($this->input->post("mode") == "storage_submit"){  //提交
+				
+			}else{
+				$error_data = array(
+					"content" => "提交类型错误！",
+					"time" => 3,
+					"url" => site_url("main/add_sales_order")
+				);
+				$this->load->view("prompt/error",$error_data);
+			}
 		}
 	}
 ?>

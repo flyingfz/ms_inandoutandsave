@@ -266,7 +266,7 @@ CREATE TABLE IF NOT EXISTS `ms_sales_order` (
   `sales_order_number` varchar(20) NOT NULL COMMENT '销售单编号',
   `sales_order_date` datetime NOT NULL COMMENT '销售时间',
   `input_staff_id` int(11) NOT NULL COMMENT '录入员ID号',
-  `member_id` int(11) NOT NULL COMMENT '会员ID号',
+  `serial_number` varchar(30) NOT NULL COMMENT '会员卡号',
   `warehouse_id` int(11) NOT NULL COMMENT '出货仓库ID号',
   `commodity_num` int(10) NOT NULL COMMENT '合计整单商品数量',
   `total_price` float(7,2) NOT NULL COMMENT '合计整单金额',

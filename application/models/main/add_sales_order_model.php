@@ -93,5 +93,17 @@
 			}
 			return false;
 		}
+		/*
+		 * @abstract add_sales_order 添加销售单基本信息
+		 * @param $order_data 基本数据
+		 * @return int 销售单ID号
+		 * @access public
+		 * */
+		public function add_sales_order($order_data){
+			if($this->db->insert($order_data)){
+				return mysql_insert_id();
+			}
+			return false;
+		}
 	}
 ?>

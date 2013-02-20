@@ -312,6 +312,8 @@
 		//把礼品内容复制到隐藏域中（防止input框缓存）
 		$("input[name='gift_name']").val($("input[name='gift_temp']").val());
 		$("input[name='gift_temp']").val("")
+		//修改方式
+		$("input[name='mode']").val("storage_submit");
 		//提交表单
 		$("form[name='add_storage_order_form']").submit();
 	});

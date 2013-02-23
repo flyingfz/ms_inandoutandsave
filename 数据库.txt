@@ -153,7 +153,6 @@ CREATE TABLE IF NOT EXISTS `ms_detail_sales_order` (
   `commodity_id` int(11) NOT NULL COMMENT '商品ID号',
   `commodity_num` int(10) NOT NULL COMMENT '数量',
   `unit_price` float(7,2) NOT NULL COMMENT '单价',
-  `remark` text COMMENT '备注',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='销售单明细表';
 
@@ -270,6 +269,7 @@ CREATE TABLE IF NOT EXISTS `ms_sales_order` (
   `warehouse_id` int(11) NOT NULL COMMENT '出货仓库ID号',
   `commodity_num` int(10) NOT NULL COMMENT '合计整单商品数量',
   `total_price` float(7,2) NOT NULL COMMENT '合计整单金额',
+  `state` TINYINT(1) NOT NULL COMMENT '结算状态（0,未结算  1,已结算）',
   `sales_order_mark` text COMMENT '备注',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='销售单表';

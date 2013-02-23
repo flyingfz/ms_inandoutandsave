@@ -138,19 +138,42 @@
 						"serial_number" => $this->input->post("serial_number"),  //会员卡号
 						"warehouse_id" => $this->input->post("warehouse_id"),  //出货仓库
 						"commodity_num" => $this->input->post("commodity_num"),  //合计数量
-						"total_price" => $this->input->post("total_price")  //合计整单金额
+						"total_price" => $this->input->post("total_price"),  //合计整单金额
+						"state" => "1"  //结算状态
 					);
 					//添加基本数据
 					if($sales_order_id = $this->add_sales_order_model->add_sales_order($order_data)){
 						//获取详细数据
 						$order_detailed_data = array(
-							"" =>
+							"sales_order_id" => $sales_order_id,  //销售单ID号
+							"commodity_id" => $this->input->post("commodity_id"),  //商品ID数组
+							"unit_price" => $this->input->post("tag_price"),  //商品单价
+							"commodity_num" => $this->input->post("num")  //商品数量
 						);
+						//添加详细数据
+						if($this->add_sales_order_model->add_sales_order_detailed($order_detailed_data,$order_data['warehouse_id'])){
+							$success_data = array(
+								"content" => "销售单提交成功！",
+								"time" => 3,
+								"url" => site_url("main/add_sales_order")
+							);
+							$this->load->view("prompt/success",$success_data);
+						}
 					}else{
-						
+						$error_data = array(
+							"content" => "销售单提交失败！",
+							"time" => 3,
+							"url" => site_url("main/add_sales_order")
+						);
+						$this->load->view("prompt/error",$error_data);
 					}
 				}else{
-					
+					$error_data = array(
+						"content" => "提交销售单详细信息时出错！",
+						"time" => 3,
+						"url" => site_url("main/add_sales_order")
+					);
+					$this->load->view("prompt/error",$error_data);
 				}
 			}else if($this->input->post("mode") == "storage_submit"){  //提交
 				

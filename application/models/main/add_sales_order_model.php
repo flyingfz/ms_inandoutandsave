@@ -100,8 +100,38 @@
 		 * @access public
 		 * */
 		public function add_sales_order($order_data){
-			if($this->db->insert($order_data)){
+			if($this->db->insert("ms_sales_order",$order_data)){
 				return mysql_insert_id();
+			}
+			return false;
+		}
+		/*
+		 * @abstract add_sales_order_detailed 添加销售单详细信息
+		 * @param $order_detailed_data 详细数据
+		 * @return bool
+		 * @access public
+		 * */
+		public function add_sales_order_detailed($order_detailed_data,$warehouse_id){
+// 			echo "<pre>";
+// 			print_r($order_detailed_data);
+// 			echo "</pre>";
+// 			die();
+			//添加详细
+			$add_sales_order_str = "insert into `ms_detail_sales_order` (`id`,`sales_order_id`,`commodity_id`,`commodity_num`,`unit_price`) values ";
+			for($i=0;$i<count($order_detailed_data['commodity_id']);$i++){
+				if($i == 0){
+					$add_sales_order_str .= "(NULL,'{$order_detailed_data['sales_order_id']}','{$order_detailed_data['commodity_id'][$i]}','{$order_detailed_data['commodity_num'][$i]}','{$order_detailed_data['unit_price'][$i]}')";
+				}else{
+					$add_sales_order_str .= ",(NULL,'{$order_detailed_data['sales_order_id']}','{$order_detailed_data['commodity_id'][$i]}','{$order_detailed_data['commodity_num'][$i]}','{$order_detailed_data['unit_price'][$i]}')";
+				}
+			}
+			if($this->db->query($add_sales_order_str)){
+				//更新商品库存数量
+				for($i=0;$i<count($order_detailed_data['commodity_id']);$i++){
+					$update_stock_str = "update `ms_stock_information` set `inventory_number`=`inventory_number`-".$order_detailed_data['commodity_num'][$i]." where `commodity_id`=".$order_detailed_data['commodity_id'][$i]." and `warehouse_id`=".$warehouse_id;
+					$this->db->query($update_stock_str);
+				}
+				return true;
 			}
 			return false;
 		}

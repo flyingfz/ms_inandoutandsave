@@ -146,7 +146,7 @@ for(i=0;i<cs.length;i++){
             <td width="8%" height="18" background="<?=base_url("public/images/main/tab_14.gif");?>" class="STYLE1"><div align="center" class="STYLE2 STYLE1">序号</div></td>
             <td height="18" background="<?=base_url("public/images/main/tab_14.gif");?>" class="STYLE1"><div align="center" class="STYLE2 STYLE1">会员卡号</div></td>
             <td height="18" background="<?=base_url("public/images/main/tab_14.gif");?>" class="STYLE1"><div align="center" class="STYLE2 STYLE1">会员姓名</div></td>
-            <td height="18" background="<?=base_url("public/images/main/tab_14.gif");?>" class="STYLE1"><div align="center" class="STYLE2 STYLE1">消费日期</div></td>
+            <td height="18" background="<?=base_url("public/images/main/tab_14.gif");?>" class="STYLE1"><div align="center" class="STYLE2 STYLE1">消费时间</div></td>
             <td height="18" background="<?=base_url("public/images/main/tab_14.gif");?>" class="STYLE1"><div align="center" class="STYLE2 STYLE1">消费金额</div></td>
             <td height="18" background="<?=base_url("public/images/main/tab_14.gif");?>" class="STYLE1"><div align="center" class="STYLE2 STYLE1">消费单号</div></td>
             <td width="7%" height="18" background="<?=base_url("public/images/main/tab_14.gif");?>" class="STYLE1"><div align="center" class="STYLE2">删除</div></td>
@@ -159,17 +159,17 @@ for(i=0;i<cs.length;i++){
             			echo '<tr>';
             			echo '<td height="18" bgcolor="#FFFFFF"><div align="center" class="STYLE1"><input name="select" type="checkbox" class="STYLE2" value="'.$consumption['id'].'" /></div></td>';
             			echo '<td height="18" bgcolor="#FFFFFF" class="STYLE2"><div align="center" class="STYLE2 STYLE1">'.$i.'</div></td>';
-            			echo '<td height="18" bgcolor="#FFFFFF"><div align="center" class="STYLE2 STYLE1">'.$consumption['membership_id'].'</div></td>';
-            			echo '<td height="18" bgcolor="#FFFFFF"><div align="center" class="STYLE2 STYLE1">'.$consumption['membership_id'].'</div></td>';
-            			echo '<td height="18" bgcolor="#FFFFFF"><div align="center" class="STYLE2 STYLE1">'.$consumption['membership_id'].'</div></td>';
-            			echo '<td height="18" bgcolor="#FFFFFF"><div align="center" class="STYLE2 STYLE1">'.$consumption['membership_id'].'</div></td>';
-            			echo '<td height="18" bgcolor="#FFFFFF"><div align="center" class="STYLE2 STYLE1">'.$consumption['membership_id'].'</div></td>';
+            			echo '<td height="18" bgcolor="#FFFFFF"><div align="center" class="STYLE2 STYLE1">'.$consumption['serial_number'].'</div></td>';
+            			echo '<td height="18" bgcolor="#FFFFFF"><div align="center" class="STYLE2 STYLE1">'.$consumption['name'].'</div></td>';
+            			echo '<td height="18" bgcolor="#FFFFFF"><div align="center" class="STYLE2 STYLE1">'.$consumption['sales_order_date'].'</div></td>';
+            			echo '<td height="18" bgcolor="#FFFFFF"><div align="center" class="STYLE2 STYLE1">'.$consumption['total_price'].'</div></td>';
+            			echo '<td height="18" bgcolor="#FFFFFF"><div align="center" class="STYLE2 STYLE1">'.$consumption['sales_order_number'].'</div></td>';
             			echo '<td height="18" bgcolor="#FFFFFF"><div align="center"><span class="STYLE2"><img src="'.base_url("public/images/main/010.gif").'" width="9" height="9" /> </span><span class="STYLE1">[</span><a href="'.site_url("main/view_commodity_warehouse/del_commodity_warehouse/".$consumption['id']).'" name="del_commodity_warehouse">删除</a><span class="STYLE1">]</span></div></td>';
             			echo '</tr>';
             		}
             	}else{
             		echo "<tr>";
-            		echo "<td colspan='10' style='text-align:center;'>暂无会员信息！</td>";
+            		echo "<td colspan='10' style='text-align:center;'>暂无会员消费记录！</td>";
             		echo "</tr>";
             	}
             ?>

@@ -23,14 +23,14 @@
 				$page = 1;
 			}
 			$page_data = array(
-					"page" => $page,  //当前页
-					"page_row" => $page_row,  //每页显示条数
-					"num_row" => $num_row,  //总条数
-					"page_num" => $page_num  //总页数
+				"page" => $page,  //当前页
+				"page_row" => $page_row,  //每页显示条数
+				"num_row" => $num_row,  //总条数
+				"page_num" => $page_num  //总页数
 			);
 			$consumption_data = array(
-					"page_data" => $page_data,  //分页数组
-					"consumption_res" => $this->view_member_consumption_model->sel_all_consumption($page_data)  //所有消费记录数据
+				"page_data" => $page_data,  //分页数组
+				"consumption_res" => $this->view_member_consumption_model->sel_all_consumption($page_data)  //所有消费记录数据
 			);
 			$this->load->view("main/view_member_consumption",$consumption_data);
 		}

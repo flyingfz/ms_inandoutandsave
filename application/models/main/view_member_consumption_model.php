@@ -23,7 +23,7 @@
 		 * @access public
 		 * */
 		public function sel_all_consumption($page_data){
-			$sel_consumption_str = "select * from `ms_sales_order_serial` order by `id` desc limit ".(($page_data['page']-1)*$page_data['page_row']).",".$page_data['page_row'];
+			$sel_consumption_str = "select `ms_sales_order`.`sales_order_number`,`ms_sales_order`.`total_price`,`ms_sales_order`.`sales_order_date`,`ms_membership_information`.`name`,`ms_membership_information`.`serial_number`,`ms_sales_order_serial`.`id` from `ms_sales_order_serial`,`ms_sales_order`,`ms_membership_information` where `ms_sales_order_serial`.`membership_id`=`ms_membership_information`.`id` and `ms_sales_order_serial`.`sales_order_id`=`ms_sales_order`.`id` limit ".(($page_data['page']-1)*$page_data['page_row']).",".$page_data['page_row'];
 			$sel_consumption_res = $this->db->query($sel_consumption_str);
 			if($sel_consumption_res->num_rows() > 0){
 				return $sel_consumption_res->result_array();

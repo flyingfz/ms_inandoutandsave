@@ -22,14 +22,14 @@
 				$page = 1;
 			}
 			$page_data = array(
-					"page" => $page,  //当前页
-					"page_row" => $page_row,  //每页显示条数
-					"num_row" => $num_row,  //总条数
-					"page_num" => $page_num  //总页数
+				"page" => $page,  //当前页
+				"page_row" => $page_row,  //每页显示条数
+				"num_row" => $num_row,  //总条数
+				"page_num" => $page_num  //总页数
 			);
 			$wait_storage_data = array(
-					"page_data" => $page_data,  //分页数组
-					"wait_storage_res" => $this->wait_storage_information_model->sel_all_wait_storage($page_data)  //所有会员数据
+				"page_data" => $page_data,  //分页数组
+				"wait_storage_res" => $this->wait_storage_information_model->sel_all_wait_storage($page_data)  //所有会员数据
 			);
 			$this->load->view("main/wait_storage_information",$wait_storage_data);
 		}

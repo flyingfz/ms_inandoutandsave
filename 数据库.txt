@@ -199,23 +199,10 @@ CREATE TABLE IF NOT EXISTS `ms_employee_info` (
 CREATE TABLE IF NOT EXISTS `ms_gift_info` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID号',
   `name` varchar(30) NOT NULL COMMENT '礼品名称',
-  `number` varchar(10) NOT NULL COMMENT '礼品数量',
+  `number` int(5) NOT NULL COMMENT '礼品数量',
   `mark` text COMMENT '备注',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='礼品表';
-
--- --------------------------------------------------------
-
---
--- 会员消费记录表 `ms_membership_consumption`
---
-
-CREATE TABLE IF NOT EXISTS `ms_membership_consumption` (
-  `membership_id` int(11) NOT NULL COMMENT '所属会员ID号',
-  `sales_order_id` int(11) NOT NULL COMMENT '销售单号',
-  `time` datetime NOT NULL COMMENT '消费时间',
-  `price` float(7,2) NOT NULL COMMENT '消费金额'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='会员消费记录表';
 
 -- --------------------------------------------------------
 
@@ -281,10 +268,22 @@ CREATE TABLE IF NOT EXISTS `ms_sales_order` (
 --
 
 CREATE TABLE IF NOT EXISTS `ms_sales_order_gift` (
-  `order_id` int(11) NOT NULL COMMENT '销售单ID号',
-  `gift_id` int(11) NOT NULL COMMENT '礼品ID号',
-  `gift_num` int(11) NOT NULL COMMENT '礼品数量'
+  `order_id` INT(11) NOT NULL COMMENT '销售单ID号',
+  `gift_id` INT(11) NOT NULL COMMENT '礼品ID号',
+  `gift_num` INT(11) NOT NULL COMMENT '礼品数量'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='销售单附礼品表';
+
+-- --------------------------------------------------------
+
+--
+-- 销售单附会员表 `ms_sales_order_serial`
+--
+
+CREATE TABLE IF NOT EXISTS `ms_sales_order_serial` (
+  `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT 'ID号',
+  `membership_id` int(11) NOT NULL COMMENT '会员ID号',
+  `sales_order_id` int(11) NOT NULL COMMENT '销售单ID号'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='销售单附会员表';
 
 -- --------------------------------------------------------
 

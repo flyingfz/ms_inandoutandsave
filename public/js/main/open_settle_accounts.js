@@ -22,6 +22,13 @@ $(document).ready(function(){
 	});
 	//确定
 	$("input[name='submit']").click(function(){
+		//把会员卡号内容复制到隐藏域中（防止input框缓存）
+		$("input[name='serial_number']",opener.document).val($("input[name='serial_number_temp']",opener.document).val());
+		$("input[name='serial_number_temp']",opener.document).val("");
+		//把礼品内容复制到隐藏域中（防止input框缓存）
+		$("input[name='gift_name']",opener.document).val($("input[name='gift_temp']",opener.document).val());
+		$("input[name='gift_temp']",opener.document).val("");
+		//修改方式
 		$("input[name='mode']",opener.document).val("settle_accounts");
 		$("form[name='add_storage_order_form']",opener.document).submit();
 		window.close();

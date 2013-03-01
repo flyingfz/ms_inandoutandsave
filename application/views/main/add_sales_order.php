@@ -109,13 +109,13 @@ for(i=0;i<cs.length;i++){
 	          				<ul>
 	          					<li>销售单号：<input type='text' name='sales_order_number' class='input_1' readonly="readonly" /></li>
 	          					<li>日　期：<input type='text' name='sales_date' readonly="readonly" class='input_1' /></li>
-	          					<li>会员卡号：<!-- 临时域 --><input type='text' name='serial_number_temp' class='input_1' /><!-- 提交的隐藏域 --><input type='hidden' name='serial_number' /></li>
+	          					<li>会员卡号：<!-- 临时域 --><input type='text' name='serial_number_temp' class='input_1' /><!-- 提交的隐藏域 --><input type='hidden' name='serial_number' /><!-- 会员ID号 --><input type='hidden' name='serial_id' /></li>
 	          					<li id="sel_serial">
 	          						<ul>
 	          							<li name="sel_serial_li"><span></span></li>
 	          						</ul>
 	          					</li>
-	          					<li>礼　品：<!-- 临时域 --><input type='text' name='gift_temp' class='input_1' /><!-- 提交的隐藏域 --><input type='hidden' name='gift_name' /></li>
+	          					<li>礼　品：<!-- 临时域 --><input type='text' name='gift_temp' class='input_1' /><!-- 提交的隐藏域 --><input type='hidden' name='gift_name' /><!-- 礼品ID --><input type='hidden' name='gift_id' value="" /></li>
 	          					<li id="sel_gift">
 	          						<ul>
 	          							<li name="sel_gift_li"><span></span></li>
@@ -163,7 +163,7 @@ for(i=0;i<cs.length;i++){
           			<!-- 结算方式 -->
           			<input type="hidden" name="mode" value="" />
           			<input type="button" name="settle_accounts" class="submit_1" value="结 算(F4)" />
-          			<input type="button" name="storage_submit" class="submit_1" value="提交(Enter)" />
+          			<input type="button" name="storage_submit" class="submit_1" value="提交(F2)" />
           		</div>
           		</form>
           	</td>

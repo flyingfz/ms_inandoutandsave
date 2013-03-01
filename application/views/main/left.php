@@ -133,7 +133,8 @@ function MM_swapImage() { //v3.0
         			<div class="dd_div_1" name="fu_menu" id="member"><span><a href="javascript:void(0);">会员管理</a></span></div>
         			<ul class="ul_1" name="member">
         				<li class="li_1"><div class="li_div_1"><span><a href="<?=site_url("main/add_new_member/index/".rand(0,100));?>" target="content">添加新会员</a></span></div></li>
-        				<li class="li_1"><div class="li_div_2"><span><a href="<?=site_url("main/view_member_information/index/1/".rand(0,100));?>" target="content">查看所有会员</a></span></div></li>
+        				<li class="li_1"><div class="li_div_1"><span><a href="<?=site_url("main/view_member_information/index/1/".rand(0,100));?>" target="content">查看所有会员</a></span></div></li>
+        				<li class="li_1"><div class="li_div_2"><span><a href="<?=site_url("main/view_member_consumption/index/1/".rand(0,100));?>" target="content">查看会员消费记录</a></span></div></li>
         			</ul>
         		</dd>
         		<dd class="dd_1">

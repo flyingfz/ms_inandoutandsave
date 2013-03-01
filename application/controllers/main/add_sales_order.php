@@ -31,7 +31,7 @@
 				$i = 0;
 				foreach($serial_res as $serial){
 					echo "<ul>";
-					echo "<li name='sel_serial_li' lang='{$i}'><span name='serial_number_{$i}'>{$serial['serial_number']}</span>&nbsp;&nbsp;<span name='name'>{$serial['name']}</span></li>";
+					echo "<li name='sel_serial_li' lang='{$i}'><span name='serial_number_{$i}'>{$serial['serial_number']}</span>&nbsp;&nbsp;<span name='name'>{$serial['name']}</span><span name='serial_id_{$i}' style='display:none;'>{$serial['id']}</span></li>";
 					echo "</ul>";
 					$i++;
 				}
@@ -51,7 +51,7 @@
 				$i = 0;
 				foreach($gift_res as $gift){
 					echo "<ul>";
-					echo "<li name='sel_gift_li' lang='{$i}'><span name='gift_name_{$i}'>{$gift['name']}</span>&nbsp;&nbsp;<span name='number'>{$gift['number']}</span></li>";
+					echo "<li name='sel_gift_li' lang='{$i}'><span name='gift_name_{$i}'>{$gift['name']}</span>&nbsp;&nbsp;<span name='number'>{$gift['number']}</span><span style='display:none;' name='gift_id_{$i}'>{$gift['id']}</span></li>";
 					echo "</ul>";
 					$i++;
 				}
@@ -71,7 +71,7 @@
 			$this->load->view("main/open_sales_commodity",$commodity_data);
 		}
 		/*
-		 * @abstract sel_number_commodity 能过编号查找商品(ajax用)
+		 * @abstract sel_number_commodity 通过编号查找商品(ajax用)
 		 * @return string
 		 * @access public
 		 * */
@@ -122,14 +122,20 @@
 // 			die();
 			$this->load->library("form_validation");
 			$this->load->model("main/add_sales_order_model");
-			if($this->input->post("mode") == "settle_accounts"){  //结算
-				//防空验证
-				$this->form_validation->set_rules("sales_order_number","销售单号","trim|required");
-				$this->form_validation->set_rules("sales_date","日期","trim|required");
-				$this->form_validation->set_rules("warehouse_id","出货仓库","trim|required");
-				$this->form_validation->set_rules("commodity_num","合计数量","trim|required");
-				$this->form_validation->set_rules("total_price","整单金额","trim|required");
-				if($this->form_validation->run() != false){
+			//防空验证
+			$this->form_validation->set_rules("sales_order_number","销售单号","trim|required");
+			$this->form_validation->set_rules("sales_date","日期","trim|required");
+			$this->form_validation->set_rules("warehouse_id","出货仓库","trim|required");
+			$this->form_validation->set_rules("commodity_num","合计数量","trim|required");
+			$this->form_validation->set_rules("total_price","整单金额","trim|required");
+			if($this->form_validation->run() != false){
+				if($this->input->post("mode") == "storage_submit" || $this->input->post("mode") == "settle_accounts"){
+					//销售单结算状态
+					if($this->input->post("mode") == "storage_submit"){
+						$state = 0;
+					}else{
+						$state = 1;
+					}
 					//获取销售单基本数据
 					$order_data = array(
 						"sales_order_number" => $this->input->post("sales_order_number"),  //销售单编号
@@ -139,10 +145,14 @@
 						"warehouse_id" => $this->input->post("warehouse_id"),  //出货仓库
 						"commodity_num" => $this->input->post("commodity_num"),  //合计数量
 						"total_price" => $this->input->post("total_price"),  //合计整单金额
-						"state" => "1"  //结算状态
+						"state" => $state  //结算状态
 					);
+					//礼品ID
+					$gift_id = $this->input->post("gift_id") ? $this->input->post("gift_id") : "";
+					//会员ID号
+					$membership_id = $this->input->post("serial_id") ? $this->input->post("serial_id") : "";
 					//添加基本数据
-					if($sales_order_id = $this->add_sales_order_model->add_sales_order($order_data)){
+					if($sales_order_id = $this->add_sales_order_model->add_sales_order($order_data,$gift_id,$membership_id)){
 						//获取详细数据
 						$order_detailed_data = array(
 							"sales_order_id" => $sales_order_id,  //销售单ID号
@@ -161,7 +171,7 @@
 						}
 					}else{
 						$error_data = array(
-							"content" => "销售单提交失败！",
+							"content" => "提交销售单详细信息时出错！",
 							"time" => 3,
 							"url" => site_url("main/add_sales_order")
 						);
@@ -169,17 +179,15 @@
 					}
 				}else{
 					$error_data = array(
-						"content" => "提交销售单详细信息时出错！",
+						"content" => "提交方式错误！",
 						"time" => 3,
 						"url" => site_url("main/add_sales_order")
 					);
 					$this->load->view("prompt/error",$error_data);
 				}
-			}else if($this->input->post("mode") == "storage_submit"){  //提交
-				
 			}else{
 				$error_data = array(
-					"content" => "提交类型错误！",
+					"content" => validation_errors(),
 					"time" => 3,
 					"url" => site_url("main/add_sales_order")
 				);

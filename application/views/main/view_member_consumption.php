@@ -3,7 +3,7 @@
 <head>
 <script charset="utf-8" src="<?=base_url("public/js/jquery.js");?>"></script>
 <script charset="utf-8" src="<?=base_url("public/js/main/paging.js");?>"></script>
-<script charset="utf-8" src="<?=base_url("public/js/main/view_sales_information.js");?>"></script>
+<script charset="utf-8" src="<?=base_url("public/js/main/view_commodity_warehouse.js");?>"></script>
 <style type="text/css">
 <!--
 body {
@@ -101,7 +101,7 @@ for(i=0;i<cs.length;i++){
     <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr>
         <td width="15" height="30"><img src="<?=base_url("public/images/main/tab_03.gif");?>" width="15" height="30" /></td>
-        <td width="1101" background="<?=base_url("public/images/main/tab_05.gif");?>"><img src="<?=base_url("public/images/main/311.gif");?>" width="16" height="16" /> <span class="STYLE4">商品管理 >> 入库单管理 >> 已结算入库单列表</span></td>
+        <td width="1101" background="<?=base_url("public/images/main/tab_05.gif");?>"><img src="<?=base_url("public/images/main/311.gif");?>" width="16" height="16" /> <span class="STYLE4">商品管理 >> 查看所有商品库存</span></td>
         <td width="281" background="<?=base_url("public/images/main/tab_05.gif");?>"><table border="0" align="right" cellpadding="0" cellspacing="0">
             <tr>
               <td width="60"><table width="87%" border="0" cellpadding="0" cellspacing="0">
@@ -144,38 +144,32 @@ for(i=0;i<cs.length;i++){
           <tr>
             <td width="6%" height="26" background="<?=base_url("public/images/main/tab_14.gif");?>" class="STYLE1"><div align="center" class="STYLE2 STYLE1">选择</div></td>
             <td width="8%" height="18" background="<?=base_url("public/images/main/tab_14.gif");?>" class="STYLE1"><div align="center" class="STYLE2 STYLE1">序号</div></td>
-            <td height="18" background="<?=base_url("public/images/main/tab_14.gif");?>" class="STYLE1"><div align="center" class="STYLE2 STYLE1">销售单号</div></td>
-            <td height="18" background="<?=base_url("public/images/main/tab_14.gif");?>" class="STYLE1"><div align="center" class="STYLE2 STYLE1">出货仓库</div></td>
-            <td height="18" background="<?=base_url("public/images/main/tab_14.gif");?>" class="STYLE1"><div align="center" class="STYLE2 STYLE1">录入员</div></td>
-            <td height="18" background="<?=base_url("public/images/main/tab_14.gif");?>" class="STYLE1"><div align="center" class="STYLE2 STYLE1">商品数量</div></td>
-            <td height="18" background="<?=base_url("public/images/main/tab_14.gif");?>" class="STYLE1"><div align="center" class="STYLE2 STYLE1">整单金额</div></td>
-            <td height="18" background="<?=base_url("public/images/main/tab_14.gif");?>" class="STYLE1"><div align="center" class="STYLE2 STYLE1">结算状态</div></td>
+            <td height="18" background="<?=base_url("public/images/main/tab_14.gif");?>" class="STYLE1"><div align="center" class="STYLE2 STYLE1">会员卡号</div></td>
+            <td height="18" background="<?=base_url("public/images/main/tab_14.gif");?>" class="STYLE1"><div align="center" class="STYLE2 STYLE1">会员姓名</div></td>
+            <td height="18" background="<?=base_url("public/images/main/tab_14.gif");?>" class="STYLE1"><div align="center" class="STYLE2 STYLE1">消费日期</div></td>
+            <td height="18" background="<?=base_url("public/images/main/tab_14.gif");?>" class="STYLE1"><div align="center" class="STYLE2 STYLE1">消费金额</div></td>
+            <td height="18" background="<?=base_url("public/images/main/tab_14.gif");?>" class="STYLE1"><div align="center" class="STYLE2 STYLE1">消费单号</div></td>
             <td width="7%" height="18" background="<?=base_url("public/images/main/tab_14.gif");?>" class="STYLE1"><div align="center" class="STYLE2">删除</div></td>
           </tr>
             <?php
-            	if($sales_information_res){
+            	if($consumption_res){
             		$i=0;
-            		foreach($sales_information_res as $sales_information){
+            		foreach($consumption_res as $consumption){
             			$i++;
             			echo '<tr>';
-            			echo '<td height="18" bgcolor="#FFFFFF"><div align="center" class="STYLE1"><input name="select" type="checkbox" class="STYLE2" value="'.$sales_information['id'].'" /></div></td>';
+            			echo '<td height="18" bgcolor="#FFFFFF"><div align="center" class="STYLE1"><input name="select" type="checkbox" class="STYLE2" value="'.$consumption['id'].'" /></div></td>';
             			echo '<td height="18" bgcolor="#FFFFFF" class="STYLE2"><div align="center" class="STYLE2 STYLE1">'.$i.'</div></td>';
-            			echo '<td height="18" bgcolor="#FFFFFF"><div align="center" class="STYLE2 STYLE1">'.$sales_information['sales_order_number'].'</div></td>';
-            			echo '<td height="18" bgcolor="#FFFFFF"><div align="center" class="STYLE2 STYLE1">'.$warehouse_res[$sales_information['warehouse_id']].'</div></td>';
-            			echo '<td height="18" bgcolor="#FFFFFF"><div align="center" class="STYLE2 STYLE1">'.$sales_information['input_staff_id'].'</div></td>';
-            			echo '<td height="18" bgcolor="#FFFFFF"><div align="center" class="STYLE2 STYLE1">'.$sales_information['commodity_num'].'</div></td>';
-            			echo '<td height="18" bgcolor="#FFFFFF"><div align="center" class="STYLE2 STYLE1">'.$sales_information['total_price'].'</div></td>';
-            			if($sales_information['state'] == 1){
-            				echo '<td height="18" bgcolor="#FFFFFF"><div align="center" class="STYLE2 STYLE1">已结算</div></td>';
-            			}else{
-            				echo '<td height="18" bgcolor="#FFFFFF"><div align="center" class="STYLE2 STYLE1">未结算</div></td>';
-            			}
-            			echo '<td height="18" bgcolor="#FFFFFF"><div align="center"><span class="STYLE2"><img src="'.base_url("public/images/main/010.gif").'" width="9" height="9" /> </span><span class="STYLE1">[</span><a href="'.site_url("main/view_sales_information/del_sale_order/".$sales_information['id']).'" name="del_sale_order">删除</a><span class="STYLE1">]</span></div></td>';
+            			echo '<td height="18" bgcolor="#FFFFFF"><div align="center" class="STYLE2 STYLE1">'.$consumption['membership_id'].'</div></td>';
+            			echo '<td height="18" bgcolor="#FFFFFF"><div align="center" class="STYLE2 STYLE1">'.$consumption['membership_id'].'</div></td>';
+            			echo '<td height="18" bgcolor="#FFFFFF"><div align="center" class="STYLE2 STYLE1">'.$consumption['membership_id'].'</div></td>';
+            			echo '<td height="18" bgcolor="#FFFFFF"><div align="center" class="STYLE2 STYLE1">'.$consumption['membership_id'].'</div></td>';
+            			echo '<td height="18" bgcolor="#FFFFFF"><div align="center" class="STYLE2 STYLE1">'.$consumption['membership_id'].'</div></td>';
+            			echo '<td height="18" bgcolor="#FFFFFF"><div align="center"><span class="STYLE2"><img src="'.base_url("public/images/main/010.gif").'" width="9" height="9" /> </span><span class="STYLE1">[</span><a href="'.site_url("main/view_commodity_warehouse/del_commodity_warehouse/".$consumption['id']).'" name="del_commodity_warehouse">删除</a><span class="STYLE1">]</span></div></td>';
             			echo '</tr>';
             		}
             	}else{
             		echo "<tr>";
-            		echo "<td colspan='10' style='text-align:center;'>暂无销售单！</td>";
+            		echo "<td colspan='10' style='text-align:center;'>暂无会员信息！</td>";
             		echo "</tr>";
             	}
             ?>
@@ -194,16 +188,16 @@ for(i=0;i<cs.length;i++){
             <td width="75%" valign="top" class="STYLE1"><div align="right">
               <table width="352" height="20" border="0" cellpadding="0" cellspacing="0">
                 <tr>
-                  <td width="62" height="22" valign="middle"><div align="right"><img src="<?=base_url("public/images/main/first.gif");?>" width="37" height="15" name="paging" lang="<?=site_url("main/view_sales_information/index/1");?>" style="cursor: pointer;" /></div></td>
-                  <td width="50" height="22" valign="middle"><div align="right"><img src="<?=base_url("public/images/main/back.gif");?>" width="43" height="15" name="paging" lang="<?=site_url("main/view_sales_information/index/".($page_data['page']-1));?>" style="cursor: pointer;" /></div></td>
-                  <td width="54" height="22" valign="middle"><div align="right"><img src="<?=base_url("public/images/main/next.gif");?>" width="43" height="15" name="paging" lang="<?=site_url("main/view_sales_information/index/".($page_data['page']+1));?>" style="cursor: pointer;" /></div></td>
-                  <td width="49" height="22" valign="middle"><div align="right"><img src="<?=base_url("public/images/main/last.gif");?>" width="37" height="15" name="paging" lang="<?=site_url("main/view_sales_information/index/".$page_data['page_num']);?>" style="cursor: pointer;" /></div></td>
+                  <td width="62" height="22" valign="middle"><div align="right"><img src="<?=base_url("public/images/main/first.gif");?>" width="37" height="15" name="paging" lang="<?=site_url("main/view_commodity_warehouse/index/1");?>" style="cursor: pointer;" /></div></td>
+                  <td width="50" height="22" valign="middle"><div align="right"><img src="<?=base_url("public/images/main/back.gif");?>" width="43" height="15" name="paging" lang="<?=site_url("main/view_commodity_warehouse/index/".($page_data['page']-1));?>" style="cursor: pointer;" /></div></td>
+                  <td width="54" height="22" valign="middle"><div align="right"><img src="<?=base_url("public/images/main/next.gif");?>" width="43" height="15" name="paging" lang="<?=site_url("main/view_commodity_warehouse/index/".($page_data['page']+1));?>" style="cursor: pointer;" /></div></td>
+                  <td width="49" height="22" valign="middle"><div align="right"><img src="<?=base_url("public/images/main/last.gif");?>" width="37" height="15" name="paging" lang="<?=site_url("main/view_commodity_warehouse/index/".$page_data['page_num']);?>" style="cursor: pointer;" /></div></td>
                   <td width="59" height="22" valign="middle"><div align="right">转到第</div></td>
                   <td width="25" height="22" valign="middle"><span class="STYLE7">
                     <input name="page" type="text" class="STYLE1" style="height:10px; width:25px;" size="5" />
                   </span></td>
                   <td width="23" height="22" valign="middle">页</td>
-                  <td width="30" height="22" valign="middle"><img src="<?=base_url("public/images/main/go.gif");?>" name="go" lang="<?=site_url("main/view_sales_information/index");?>" width="37" height="15" style="cursor:pointer;" /></td>
+                  <td width="30" height="22" valign="middle"><img src="<?=base_url("public/images/main/go.gif");?>" name="go" lang="<?=site_url("main/view_member_information/index");?>" width="37" height="15" style="cursor:pointer;" /></td>
                 </tr>
               </table>
             </div></td>

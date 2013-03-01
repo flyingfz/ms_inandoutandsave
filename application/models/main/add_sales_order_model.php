@@ -96,12 +96,35 @@
 		/*
 		 * @abstract add_sales_order 添加销售单基本信息
 		 * @param $order_data 基本数据
+		 * @param $gift_id 礼品ID号
+		 * @param $membership_id 会员ID号
 		 * @return int 销售单ID号
 		 * @access public
 		 * */
-		public function add_sales_order($order_data){
+		public function add_sales_order($order_data,$gift_id,$membership_id){
 			if($this->db->insert("ms_sales_order",$order_data)){
-				return mysql_insert_id();
+				$insert_id = mysql_insert_id();  //销售单ID号
+				//添加销售单附礼品表
+				if($gift_id != ""){
+					$insert_gift = "insert into `ms_sales_order_gift` (`order_id`,`gift_id`,`gift_num`) values ({$insert_id},{$gift_id},1)";
+					if($this->db->query($insert_gift)){
+						//更新礼品数量
+						$update_gift = "update `ms_gift_info` set `number`=`number`-1 where `id`={$gift_id}";
+						if(!$this->db->query($update_gift)){
+							return false;
+						}
+					}else{
+						return false;
+					}
+				}
+				//添加销售单附会员表
+				if($membership_id != ""){
+					$insert_membership_str = "insert into `ms_sales_order_serial` (`membership_id`,`sales_order_id`) values ({$membership_id},{$insert_id})";
+					if(!$this->db->query($insert_membership_str)){
+						return false;
+					}
+				}
+				return $insert_id;
 			}
 			return false;
 		}

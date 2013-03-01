@@ -11,14 +11,14 @@
 		new Calendar().show(this);
 	});
 	
-	//监控F4键（结算）和回车键（提交）
+	//监控F4键（结算）和F2键（提交）
 	$(document).keyup(function(event){
 		//F4
 		if(event.keyCode == "115"){
 			$("input[name='settle_accounts']").click();
 		}
-		//回车
-		if(event.keyCode == "13"){
+		//F2
+		if(event.keyCode == "113"){
 			$("input[name='storage_submit']").click();
 		}
 	});
@@ -58,7 +58,7 @@
 	});
 	
 	//商品编号框单击事件
-	$("input[name='commodity_number']").click(function(){
+	$("input[name='commodity_number']").focus(function(){
 		//控制文字
 		if($(this).val() == "请输入商品编号"){
 			$(this).val("");  //清空文本框
@@ -135,7 +135,8 @@
 		//鼠标选中(单击)事件
 		$("li[name='sel_serial_li']").live("click",function(){
 			var i = $(this).attr("lang");
-			$("input[name='serial_number_temp']").val($("span[name='serial_number_"+i+"']").html());
+			$("input[name='serial_number_temp']").val($("span[name='serial_number_"+i+"']").html());  //显示会员卡号
+			$("input[name='serial_id']").val($("span[name='serial_id_"+i+"']").html());  //赋值会员ID号
 			$("#sel_serial").css("display","none");
 			$(this).unbind("click");
 		});
@@ -158,13 +159,13 @@
 			$("#sel_gift").css("display","none");
 		}
 	});
-	/*******************************************************************************/
+	/*************************此段代码，查找礼品也有共享End*****************************/
 	//=======================================查找会员结束=======================================
 	
 	//=======================================查找礼品开始=======================================
 	var gift_name = "";
 	$("input[name='gift_temp']").focus(function(){
-		$(this).unbind("keyup");
+		$(this).unbind("keyup,click");
 		$(this).keyup(function(event){
 			if(event.keyCode == 40 || event.keyCode == 38){
 				//上下移动待开发
@@ -172,7 +173,7 @@
 				//如果内容发生改变
 				if($(this).val() != ""){
 					if(gift_name != $(this).val()){
-						gift_name = $(this).val();  //获取卡号内容
+						gift_name = $(this).val();  //获取礼品名称
 						//调用AJAX查找
 						$.post($("#app_path").val()+"/main/add_sales_order/sel_gift/"+Math.random(),{gift_name: gift_name},function(data){
 							$("#sel_gift").css("display","block");
@@ -203,7 +204,8 @@
 		//鼠标选中(单击)事件
 		$("li[name='sel_gift_li']").live("click",function(){
 			var i = $(this).attr("lang");
-			$("input[name='gift_temp']").val($("span[name='gift_name_"+i+"']").html());
+			$("input[name='gift_temp']").val($("span[name='gift_name_"+i+"']").html());  //礼品名称
+			$("input[name='gift_id']").val($("span[name='gift_id_"+i+"']").html());  //礼品ID号
 			$("#sel_gift").css("display","none");
 			$(this).unbind("click");
 		});
@@ -277,6 +279,11 @@
 			alert("日期不能为空！");
 			return false;
 		}
+		
+		if($("input[name='total_price']").val() == ""){
+			alert("请填写商品单价或数量！");
+			return false;
+		}
 		//单价防空验证
 		var purchase_price = true;
 		$("input[name='purchase_price[]']").each(function(){
@@ -308,10 +315,10 @@
 		}
 		//把会员卡号内容复制到隐藏域中（防止input框缓存）
 		$("input[name='serial_number']").val($("input[name='serial_number_temp']").val());
-		$("input[name='serial_number_temp']").val("")
+		$("input[name='serial_number_temp']").val("");
 		//把礼品内容复制到隐藏域中（防止input框缓存）
 		$("input[name='gift_name']").val($("input[name='gift_temp']").val());
-		$("input[name='gift_temp']").val("")
+		$("input[name='gift_temp']").val("");
 		//修改方式
 		$("input[name='mode']").val("storage_submit");
 		//提交表单

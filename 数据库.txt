@@ -250,7 +250,7 @@ CREATE TABLE IF NOT EXISTS `ms_new_purchase_bill` (
 CREATE TABLE IF NOT EXISTS `ms_sales_order` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID号',
   `sales_order_number` varchar(20) NOT NULL COMMENT '销售单编号',
-  `sales_order_date` datetime NOT NULL COMMENT '销售时间',
+  `sales_order_date` date NOT NULL COMMENT '销售时间',
   `input_staff_id` int(11) NOT NULL COMMENT '录入员ID号',
   `serial_number` varchar(30) NOT NULL COMMENT '会员卡号',
   `warehouse_id` int(11) NOT NULL COMMENT '出货仓库ID号',

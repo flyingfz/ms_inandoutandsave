@@ -172,7 +172,7 @@ for(i=0;i<cs.length;i++){
             			}
             			echo '<td height="18" bgcolor="#FFFFFF"><div align="center" class="STYLE2 STYLE1">'.$member['serial_number'].'</div></td>';
             			echo '<td height="18" bgcolor="#FFFFFF"><div align="center"><img src="'.base_url("public/images/main/037.gif").'" width="9" height="9" /><span class="STYLE1"> [</span><a href="'.site_url("main/view_member_information/edit_member_page/".$member['id']).'">编辑</a><span class="STYLE1">]</span></div></td>';
-            			echo '<td height="18" bgcolor="#FFFFFF"><div align="center"><span class="STYLE2"><img src="'.base_url("public/images/main/010.gif").'" width="9" height="9" /> </span><span class="STYLE1">[</span><a href="'.site_url("main/view_member_information/del_member/".$member['id']).'" name="del_employee">删除</a><span class="STYLE1">]</span></div></td>';
+            			echo '<td height="18" bgcolor="#FFFFFF"><div align="center"><span class="STYLE2"><img src="'.base_url("public/images/main/010.gif").'" width="9" height="9" /> </span><span class="STYLE1">[</span><a href="'.site_url("main/view_member_information/del_member/".$member['id']).'" name="del_memer_information">删除</a><span class="STYLE1">]</span></div></td>';
             			echo '</tr>';
             		}
             	}else{

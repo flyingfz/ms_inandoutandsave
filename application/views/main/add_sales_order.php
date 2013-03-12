@@ -152,7 +152,7 @@ for(i=0;i<cs.length;i++){
           				</div>
           				<div class="div_content_2">
           					<div class="div_content_2_1">
-          						<span class="span_2">商品编号：<input type="text" class="input_5" value="请输入商品编号" name="commodity_number" />&nbsp;<a href="javascript:void(0);" id="add_commodity">添加商品</a></span>
+          						<span class="span_2">商品编号：<input type="text" class="input_5" value="请输入商品编号(按回车添加)" name="commodity_number" />&nbsp;<a href="javascript:void(0);" id="add_commodity">添加商品</a></span>
           						<span class="span_1">合计数量：<input type="text" class="input_4" name="commodity_num" readonly="readonly" /></span>
           						<span class="span_1">整单金额：<input type="text" class="input_4" name="total_price" readonly="readonly"></span>
           					</div>

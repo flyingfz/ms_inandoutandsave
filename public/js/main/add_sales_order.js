@@ -53,14 +53,14 @@
 			alert("请将商品单价填写完整！");
 			return false;
 		}
-		window.open($("#app_path").val()+"/main/add_sales_order/open_settle_accounts/"+$("input[name='total_price']").val()+"/"+Math.random(),"open_settle_accounts","resizable=no,scrollbars=no,status=no,toolbar=no,width=355,height=225");
+		window.open($("#app_path").val()+"/main/add_sales_order/open_settle_accounts/"+$("input[name='total_price']").val()+"/"+Math.random(),"open_settle_accounts","resizable=no,scrollbars=no,status=no,toolbar=no,width=355,height=225,left="+(($(parent.window).width()/2)-175)+"px,top="+(($(parent.parent.window).height()/2)-110)+"px");
 		return false;
 	});
 	
 	//商品编号框单击事件
 	$("input[name='commodity_number']").focus(function(){
 		//控制文字
-		if($(this).val() == "请输入商品编号"){
+		if($(this).val() == "请输入商品编号(按回车添加)"){
 			$(this).val("");  //清空文本框
 			$(this).css("color","#000000");  //设置文字颜色
 		}
@@ -70,10 +70,10 @@
 			if(event.keyCode == 13){
 				var commodity_number = $("input[name='commodity_number']").val();
 				$.post($("#app_path").val()+"/main/add_sales_order/sel_number_commodity/"+Math.random(),{commodity_number: commodity_number},function(data){
-					if(data = "1"){
+					if(data == "1"){
 						alert("找到多条商品，检查商品编号！");
 						return false;
-					}else if(data = "0"){
+					}else if(data == "0"){
 						alert("没有找到相关商品，检查商品编号！");
 						return false;
 					}

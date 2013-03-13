@@ -34,5 +34,29 @@
 			);
 			$this->load->view("main/view_member_consumption",$consumption_data);
 		}
+		
+		/*
+		 * @abstract del_member_consumption 删除指定会员消费记录
+		 * @param $member_consumption_id 消费记录的ID号
+		 * @access public
+		 * */
+		public function del_member_consumption($member_consumption_id){
+			$this->load->model("main/view_member_consumption_model");
+			if($this->view_member_consumption_model->del_member_consumption($member_consumption_id)){
+				$success_data = array(
+					"content" => "删除成功！",
+					"url" => site_url("main/view_member_consumption"),
+					"time" => 3
+				);
+				$this->load->view("prompt/success",$success_data);
+			}else{
+				$error_data = array(
+					"content" => "删除失败！",
+					"url" => site_url("main/view_member_consumption"),
+					"time" => 3
+				);
+				$this->load->view("prompt/error",$error_data);
+			}
+		}
 	}
 ?>

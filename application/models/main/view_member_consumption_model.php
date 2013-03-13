@@ -30,5 +30,16 @@
 			}
 			return false;
 		}
+		
+		/*
+		 * @abstract del_member_consumption 删除指定会员消费记录
+		 * @param $member_consumption_id 消费记录的ID号
+		 * @return bool 
+		 * @access public
+		 * */
+		public function del_member_consumption($member_consumption_id){
+			$del_member_consumption_str = "delete from `ms_sales_order_serial` where `id`={$member_consumption_id} limit 1";
+			return $this->db->query($del_member_consumption_str);
+		}
 	}
 ?>

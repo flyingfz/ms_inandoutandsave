@@ -3,7 +3,7 @@
 <head>
 <script charset="utf-8" src="<?=base_url("public/js/jquery.js");?>"></script>
 <script charset="utf-8" src="<?=base_url("public/js/main/paging.js");?>"></script>
-<script charset="utf-8" src="<?=base_url("public/js/main/view_commodity_warehouse.js");?>"></script>
+<script charset="utf-8" src="<?=base_url("public/js/main/view_member_consumption.js");?>"></script>
 <style type="text/css">
 <!--
 body {
@@ -164,7 +164,7 @@ for(i=0;i<cs.length;i++){
             			echo '<td height="18" bgcolor="#FFFFFF"><div align="center" class="STYLE2 STYLE1">'.$consumption['sales_order_date'].'</div></td>';
             			echo '<td height="18" bgcolor="#FFFFFF"><div align="center" class="STYLE2 STYLE1">'.$consumption['total_price'].'</div></td>';
             			echo '<td height="18" bgcolor="#FFFFFF"><div align="center" class="STYLE2 STYLE1">'.$consumption['sales_order_number'].'</div></td>';
-            			echo '<td height="18" bgcolor="#FFFFFF"><div align="center"><span class="STYLE2"><img src="'.base_url("public/images/main/010.gif").'" width="9" height="9" /> </span><span class="STYLE1">[</span><a href="'.site_url("main/view_commodity_warehouse/del_commodity_warehouse/".$consumption['id']).'" name="del_commodity_warehouse">删除</a><span class="STYLE1">]</span></div></td>';
+            			echo '<td height="18" bgcolor="#FFFFFF"><div align="center"><span class="STYLE2"><img src="'.base_url("public/images/main/010.gif").'" width="9" height="9" /> </span><span class="STYLE1">[</span><a href="'.site_url("main/view_member_consumption/del_member_consumption/".$consumption['id']).'" name="del_member_consumption">删除</a><span class="STYLE1">]</span></div></td>';
             			echo '</tr>';
             		}
             	}else{

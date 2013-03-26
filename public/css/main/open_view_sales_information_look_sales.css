@@ -1,0 +1,41 @@
+@CHARSET "UTF-8";
+*{
+	margin:0px;
+	padding:0px;
+	font-size:12px;
+}
+
+.div_1{
+	width:100%;
+}
+
+.div_2{
+	width:100%;
+	text-align:center;
+}
+
+.div_3{
+	
+}
+
+.div_2 span{
+	font-size:20px;
+}
+
+.title_div{
+	width:96%;
+	height:30px;
+	margin:auto;
+	margin-top:10px;
+	border-bottom:1px solid #000;
+}
+
+.basic_div{
+	width:95%;
+	margin:auto;
+	margin-top:10px;
+}
+
+.basic_div ul{
+	list-style-type:none;
+}

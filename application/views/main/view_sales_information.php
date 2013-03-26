@@ -96,6 +96,9 @@ for(i=0;i<cs.length;i++){
 </head>
 
 <body>
+<!-- app_path -->
+<input type="hidden" id="app_path" value="<?=site_url();?>" />
+<!-- app_path End -->
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
     <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -160,7 +163,7 @@ for(i=0;i<cs.length;i++){
             			echo '<tr>';
             			echo '<td height="18" bgcolor="#FFFFFF"><div align="center" class="STYLE1"><input name="select" type="checkbox" class="STYLE2" value="'.$sales_information['id'].'" /></div></td>';
             			echo '<td height="18" bgcolor="#FFFFFF" class="STYLE2"><div align="center" class="STYLE2 STYLE1">'.$i.'</div></td>';
-            			echo '<td height="18" bgcolor="#FFFFFF"><div align="center" class="STYLE2 STYLE1">'.$sales_information['sales_order_number'].'</div></td>';
+            			echo '<td height="18" bgcolor="#FFFFFF"><div align="center" class="STYLE2 STYLE1"><a href="javascript:void(0);" name="look_sales_order" lang="'.$sales_information['id'].'">'.$sales_information['sales_order_number'].'</a></div></td>';
             			echo '<td height="18" bgcolor="#FFFFFF"><div align="center" class="STYLE2 STYLE1">'.$warehouse_res[$sales_information['warehouse_id']].'</div></td>';
             			echo '<td height="18" bgcolor="#FFFFFF"><div align="center" class="STYLE2 STYLE1">'.$sales_information['input_staff_id'].'</div></td>';
             			echo '<td height="18" bgcolor="#FFFFFF"><div align="center" class="STYLE2 STYLE1">'.$sales_information['commodity_num'].'</div></td>';

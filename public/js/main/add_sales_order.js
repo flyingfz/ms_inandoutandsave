@@ -87,7 +87,7 @@
 	//商品编号框失去焦点事件
 	$("input[name='commodity_number']").blur(function(){
 		if($(this).val() == ""){
-			$(this).val("请输入商品编号");  //设置文本框
+			$(this).val("请输入商品编号(按回车添加)");  //设置文本框
 			$(this).css("color","#999999");  //设置文字颜色
 		}
 	});
@@ -266,7 +266,7 @@
 	//添加商品单击事件
 	$("#add_commodity").click(function(){
 		var commodity_number = $("input[name='commodity_number']").val();
-		if(commodity_number == "请输入商品编号" || commodity_number == ""){
+		if(commodity_number == "请输入商品编号(按回车添加)" || commodity_number == ""){
 			commodity_number = "-";
 		}
 		window.open($("#app_path").val()+"/main/add_sales_order/open_selection_commodity/"+commodity_number+"/"+Math.random(),"add_storage_order_open_selection_commodity","location=no,menubar=no,resizable=no,scrollbars=no,toolbar=no,width=800px,height=480px,left="+(($(parent.window).width()/2)-400)+"px,top="+(($(parent.parent.window).height()/2)-240)+"px");

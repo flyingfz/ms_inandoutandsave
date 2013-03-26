@@ -6,4 +6,9 @@ $(document).ready(function(){
 		}
 		return false;
 	});
+	
+	//查看指定销售单
+	$("a[name='look_sales_order']").click(function(){
+		window.open($("#app_path").val()+"/main/open_view_sales_information_look_sales/index/"+$(this).attr("lang")+"/"+Math.random(),"open_view_sales_information_look_sales","location=no,menubar=no,resizable=no,scrollbars=no,toolbar=no,width=800px,height=480px,left="+(($(parent.window).width()/2)-400)+"px,top="+(($(parent.parent.window).height()/2)-240)+"px");
+	});
 });

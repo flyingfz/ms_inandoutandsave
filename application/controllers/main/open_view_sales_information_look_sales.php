@@ -15,7 +15,7 @@
 			$this->load->model("main/open_view_sales_information_look_sales_model");
 			$sales_data = array(
 				"sales_basic" => $this->open_view_sales_information_look_sales_model->sel_sales_basic($sales_id),  //销售单基本信息
-				"sales_detail" => $this->open_view_sales_information_look_sales_model->sel_sales_detail()  //销售单详细信息
+				"sales_detail_res" => $this->open_view_sales_information_look_sales_model->sel_sales_detail($sales_id)  //销售单详细信息
 			);
 			$this->load->view("main/open_view_sales_information_look_sales",$sales_data);
 		}

@@ -38,4 +38,28 @@
 
 .basic_div ul{
 	list-style-type:none;
+	height:20px;
+}
+
+.basic_div ul li{
+	float:left;
+	margin-right:25px;
+}
+
+.content_div{
+	width:95%;
+	margin:auto;
+}
+
+.content_div table{
+	width:100%;
+	border-collapse:collapse;
+}
+
+.content_div table tr{
+	height:23px;
+}
+
+.content_div table tr td{
+	padding:3px;
 }

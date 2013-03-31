@@ -63,3 +63,19 @@
 .content_div table tr td{
 	padding:3px;
 }
+
+.order_foot{
+	width:95%;
+	margin:auto;
+}
+
+.order_foot ul{
+	margin-top:5px;
+	list-style-type:none;
+}
+
+.order_foot ul li{
+	float:right;
+	margin-left:15px;
+	margin-right:15px;
+}

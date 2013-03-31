@@ -55,6 +55,12 @@
 						?>
 					</table>
 				</div>
+				<div class="order_foot">
+					<ul>
+						<li>整单金额：<?=$sales_basic->total_price;?></li>
+						<li>合计数量：<?=$sales_basic->commodity_num;?></li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</body>
